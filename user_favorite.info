@@ -1,0 +1,5 @@
+name = User Favorite
+description = Defines section "Favorite"  which allow user write a data
+package = Custom Star-Auction
+core = 7.x
+

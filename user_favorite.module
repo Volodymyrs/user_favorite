@@ -1,0 +1,46 @@
+<?php
+
+/**
+ * @file Implementations of core-hooks.
+ */
+
+/**
+ * Permission to administer walls.
+ */
+//define('FAVORITE_PERM_ADMINISTER', 'administer walls');
+
+/**
+ * Path to wall
+ */
+define('FAVORITE_PATH', drupal_get_path('module', 'user_favorite'));
+
+
+/**
+ * Implements hook_menu().
+ */
+function user_favorite_menu() {
+
+  $items['favorite/%/list'] = array(
+    'title' => 'Interests',
+    'page callback' => 'user_favorite_page',
+    'page arguments' => array(1),
+    'access callback' => 'node_access',
+    'access arguments' => array('view', 1),
+    'type' => MENU_CALLBACK,
+    'file' => 'includes/user_favorite.pages.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function user_favorite_theme($existing, $type, $theme, $path) {
+  return array(
+    'favorite_grid' => array(
+      'template' => 'templates/favorite-grid',
+      'variables' => array('items' => NULL, 'options' => NULL),
+    ),
+  );
+}
